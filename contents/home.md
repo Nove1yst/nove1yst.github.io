@@ -1,32 +1,27 @@
 <!--
-Zehao Jin (金泽昊) -->
+Junran Wang (王钧然) -->
 
 Atlanta, Georgia, US
 
-\[ [Email](mailto:lunamos.thu@gmail.com) | [Github](https://github.com/lunamos) \]
+\[ [Email](mailto:jwang3668@gatech.edu) | [Github](https://github.com/Nove1yst) \]
 
 ### About Me
 
-Hi! I am a first-year M.S. student in [Computational Science and Engineering](https://cse.gatech.edu/) at Georgia Institute of Technology. Prior to Georgia Tech, I earned my Bachelor's degree from [Xingjian College](https://www.xjc.tsinghua.edu.cn/), Tsinghua University in 2025, where I was advised by [Prof. Yanan Sui](https://yanansui.com) at [LNS Group](https://lnsgroup.cc).
+Hi! I am a first-year M.S. student in [Electrical and Computer Engineering](https://ece.gatech.edu) at Georgia Institute of Technology. Prior to Georgia Tech, I earned my Bachelor's degree from [School of Vehicle and Mobility](https://eng.svm.tsinghua.edu.cn), Tsinghua University in 2025.
 
-My research interests lie at the intersection of **Artificial Intelligence** and **Neuroscience**. I am fascinated by understanding how biological neural systems work and leveraging these insights to build more intelligent AI systems. Specifically, I am interested in:
+My research interests lie at the intersection of **Visual-language Models** and **3D Computer Vision**. I am fascinated by the classical physics-based computational methods for recreating real world and leveraging these insights to build more intelligent AI systems. Specifically, I am interested in:
 
-- **Efficient High-Performance LLMs**: Building scalable and efficient large language models, potentially inspired by principles from neuroscience
-- **AI and Neuroscience**: Exploring the synergy between artificial intelligence and biological neural systems
-- **Vision-Language Models**: Developing multimodal AI systems including Vision-Language Models (VLM) and Vision-Language-Action models (VLA)
+- **Vision-Language Models**: Developing multimodal AI systems including Vision-Language Models (VLM)
+- **Physics-informed 3D Computer Vision**: Recreating realistic 3D world combining physical simulation and AI techniques
 
 ### Professional Experience
 
-- **Keeta (Meituan) · LongCat LLM Team** (Sept 2025 - Dec 2025)
-  - Machine Learning Research Intern, Shanghai, China
-  - Deployed and evaluated vision-language models (VLM) and Vision-Language-Action models (VLA)
-  - Designed benchmarking pipelines for production-ready VLM/VLA evaluation
-
-- **Infplane AI** (Jun 2024 - Jun 2025)
-  - Cofounder, Beijing, China
-  - Pre-trained and finetuned LLMs using Megatron-LM and NVIDIA NeMo Framework
+- **Infplane AI Ltd.** (Jun 2024 - Apr 2025)
   - Developed automated hyperparameter optimization algorithms for LLM training
+  - Developed a non-supervision graph-based algorithm for root-cause analysis of a computation cluster
+  – Developed hardware and software of a desktop conversation robot with basic interactions ability
 
-### Misc
 
-**_Understand Intelligence, Create Intelligence._**
+<!-- ### Misc
+
+**_flow_** -->

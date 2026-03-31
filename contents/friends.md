@@ -1,28 +1,32 @@
 <div style="display: flex; flex-wrap: wrap; gap: 50px; justify-content: center; align-items: flex-start;">
 
   <div style="text-align: center; width: 125px;">
-    <a href="https://bingqi-huang.github.io">
+    <a href="https://lunamos.github.io">
       <img 
-        src="static/assets/img/friends/hbq.jpg" 
-        alt="Bingqi Huang" 
+        src="static/assets/img/friends/jzh.jpg" 
+        alt="Zehao Jin" 
         style="width: 100%; aspect-ratio: 1/1; border-radius: 15px; object-fit: cover; margin-bottom: 8px;"
       >
     </a>
     <p style="margin: 0;">
-      <a href="https://bingqi-huang.github.io" style="color: #4285F4; text-decoration: none;">Bingqi Huang</a>
+      <a href="https://lunamos.github.io" style="color: #4285F4; text-decoration: none;">Zehao Jin</a>
     </p>
   </div>
 
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 50px; justify-content: center; align-items: flex-start;">
+
   <div style="text-align: center; width: 125px;">
-    <a href="https://king-bridge.github.io/">
+    <a href="https://www.hnbai.com">
       <img 
-        src="static/assets/img/friends/wqy.jpg" 
-        alt="Qiyao Wang" 
-        style="width: 100%; aspect-ratio: 1/1; border-radius: 15px; object-fit: cover; margin-bottom: 8px;"
+        src="static/assets/img/friends/bhn.jpg" 
+        alt="Zehao Jin" 
+        style="width: 100%; aspect-ratio: 2268/3052; border-radius: 15px; object-fit: cover; margin-bottom: 8px;"
       >
     </a>
     <p style="margin: 0;">
-      <a href="https://king-bridge.github.io/" style="color: #4285F4; text-decoration: none;">Qiyao Wang</a>
+      <a href="https://www.hnbai.com" style="color: #4285F4; text-decoration: none;">Haonan Bai</a>
     </p>
   </div>
 
