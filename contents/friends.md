@@ -13,15 +13,11 @@
     </p>
   </div>
 
-</div>
-
-<div style="display: flex; flex-wrap: wrap; gap: 50px; justify-content: center; align-items: flex-start;">
-
   <div style="text-align: center; width: 125px;">
     <a href="https://www.hnbai.com">
       <img 
         src="static/assets/img/friends/bhn.jpg" 
-        alt="Zehao Jin" 
+        alt="Haonan Bai" 
         style="width: 100%; aspect-ratio: 2268/3052; border-radius: 15px; object-fit: cover; margin-bottom: 8px;"
       >
     </a>
