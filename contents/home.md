@@ -17,9 +17,9 @@ My research interests lie at the intersection of **Visual-language Models** and 
 ### Professional Experience
 
 - **Infplane AI Ltd.** (Jun 2024 - Apr 2025)
-  - Developed automated hyperparameter optimization algorithms for LLM training
-  - Developed a non-supervision graph-based algorithm for root-cause analysis of a computation cluster
-  – Developed hardware and software of a desktop conversation robot with basic interactions ability
+  - Pretrained and finetuned LLMs using Megatron-LM and NVIDIA NeMo Framework.
+  - Developed automated hyperparameter optimization algorithms to reduce training costs for LLMs.
+  - Developed a non-supervision graph-based algorithm for root-cause analysis of a computation cluster.
 
 
 <!-- ### Misc
