@@ -78,6 +78,36 @@
         </div>
     </section>
 
+    <section class="bg-gradient-primary-to-secondary-gray py-5" id="maillist">
+        <div class="container px-5">
+            <header>
+                <h2><i class="bi bi-envelope-fill"></i>&nbsp;MAIL LIST</h2>
+            </header>
+            <div class="main-body">
+                <p>Want to be notified when this work is released on arXiv? Leave your email below — voluntary, used only for notifications about this paper.</p>
+                <form id="maillist-form"
+                      action="https://formsubmit.co/wangjunran2003@gmail.com"
+                      method="POST"
+                      class="d-flex flex-wrap gap-2 align-items-center mt-3">
+                    <input type="hidden" name="_subject" value="New Mail List Subscription">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="https://nove1yst.github.io/post.html?subscribed=1">
+                    <input type="text" name="_honey" style="display:none">
+                    <input type="email" name="email" required placeholder="you@example.com"
+                           style="flex: 1 1 260px; padding: 0.5rem 0.75rem; border: 1px solid #ccc; border-radius: 4px;">
+                    <input type="text" name="post_slug" id="maillist-post-slug" style="display:none">
+                    <button type="submit"
+                            style="padding: 0.5rem 1.2rem; background: var(--h-title-color); color: #fff; border: 0; border-radius: 4px; cursor: pointer;">
+                        Subscribe
+                    </button>
+                </form>
+                <p id="maillist-thanks" class="mt-3" style="display:none; color: #2a7a2a;">
+                    Thanks! Check your inbox to confirm your subscription.
+                </p>
+            </div>
+        </div>
+    </section>
+
     <footer class="bg-bottom text-center py-5">
         <div class="container px-5">
             <div class="text-white-50 small">

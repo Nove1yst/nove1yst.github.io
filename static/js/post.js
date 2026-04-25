@@ -52,6 +52,14 @@ window.addEventListener('DOMContentLoaded', () => {
         })
         .catch(err => console.log(err));
 
+    // Mail list: stamp slug, show thanks if redirected back
+    const slugField = document.getElementById('maillist-post-slug');
+    if (slugField) slugField.value = slug;
+    if (getQueryParam('subscribed') === '1') {
+        const thanks = document.getElementById('maillist-thanks');
+        if (thanks) thanks.style.display = 'block';
+    }
+
     // Load markdown
     marked.use({ mangle: false, headerIds: false });
     fetch(blog_dir + slug + '.md')

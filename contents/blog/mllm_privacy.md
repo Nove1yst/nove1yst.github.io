@@ -1,3 +1,5 @@
+**Authors: Junran Wang, Xinjie Shen, Zehao Jin**
+
 **An Interactive 3D+Audio Benchmark for Physically Grounded Privacy Awareness**
 
 <!-- Paper / Code links — update when available -->
