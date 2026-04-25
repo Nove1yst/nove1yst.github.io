@@ -53,6 +53,30 @@ section .main-body{
     line-height: 1.5rem;
 }
 
+#post-md img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 1rem auto;
+}
+
+#post-md table {
+    border-collapse: collapse;
+    margin: 1rem 0;
+    width: 100%;
+}
+
+#post-md table th,
+#post-md table td {
+    border: 1px solid #cfcfcf;
+    padding: 0.4rem 0.7rem;
+}
+
+#post-md table th {
+    background-color: #f5f5f5;
+    font-weight: 600;
+}
+
 section .container {
     max-width: 800px; /* 设置你想要的宽度，比如 800px */
 }
