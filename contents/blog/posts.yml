@@ -1,0 +1,9 @@
+- slug: mllm_privacy
+  title: "ImmersedPrivacy: How Far Are We from Privacy-Aware Trustworthy VLMs in the Physical World?"
+  date: 2026-04-24
+  summary: "We introduce ImmersedPrivacy, an interactive 3D+Audio benchmark that evaluates whether Vision-Language Models can perceive, recognize, and respect privacy in physically grounded environments."
+
+- slug: hello-world
+  title: Hello, World!
+  date: 2026-04-24
+  summary: My first blog post — an introduction to this site and what I plan to write about here.

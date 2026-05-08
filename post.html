@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title id="title">Post</title>
+    <link rel="icon" type="image/x-icon" href="static/assets/jwang.ico" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,600;1,600&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,500;0,600;0,700;1,300;1,500;1,600;1,700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;1,400&amp;display=swap"
+        rel="stylesheet" />
+    <link type="text/css" href="static/css/styles.css" rel="stylesheet" />
+    <link type="text/css" href="static/css/main.css" rel="stylesheet" />
+</head>
+
+<body id="page-top">
+    <nav class="header navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
+        <div class="container px-5">
+            <a id="page-top-title" class="navbar-brand fw-bold" href="index.html"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                MENU
+                <i class="bi-list"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link me-lg-3" href="index.html">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link me-lg-3 active" href="blog.html">BLOG</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link me-lg-3" href="index.html#news">NEWS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link me-lg-3" href="index.html#publications">PUBLICATIONS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link me-lg-3" href="index.html#awards">AWARDS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link me-lg-3" href="docs/jwang_cv.pdf">CV</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="top-section" style="background-image: url('static/assets/img/THU.jpg');">
+        <div class="top-section-content">
+            <div class="container px-5">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 id="post-top-title" class="text-white display-3 lh-1 mb-4 font-alt"></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-gradient-primary-to-secondary-light py-5" id="post">
+        <div class="container px-5">
+            <header>
+                <h2 id="post-title"></h2>
+                <p id="post-date" class="text-muted" style="margin-top:-0.4rem;"></p>
+            </header>
+            <div class="main-body" id="post-md"></div>
+            <p class="mt-4"><a href="blog.html">&larr; Back to Blog</a></p>
+        </div>
+    </section>
+
+    <section class="bg-gradient-primary-to-secondary-gray py-5" id="maillist">
+        <div class="container px-5">
+            <header>
+                <h2><i class="bi bi-envelope-fill"></i>&nbsp;MAIL LIST</h2>
+            </header>
+            <div class="main-body">
+                <p>Want to be notified when this work is released on arXiv? Leave your email below — voluntary, used only for notifications about this paper.</p>
+                <form id="maillist-form"
+                      action="https://formsubmit.co/wangjunran2003@gmail.com"
+                      method="POST"
+                      class="d-flex flex-wrap gap-2 align-items-center mt-3">
+                    <input type="hidden" name="_subject" value="New Mail List Subscription">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="https://nove1yst.github.io/index.html">
+                    <input type="text" name="_honey" style="display:none">
+                    <input type="email" name="email" required placeholder="you@example.com"
+                           style="flex: 1 1 260px; padding: 0.5rem 0.75rem; border: 1px solid #ccc; border-radius: 4px;">
+                    <input type="text" name="post_slug" id="maillist-post-slug" style="display:none">
+                    <button type="submit"
+                            style="padding: 0.5rem 1.2rem; background: var(--h-title-color); color: #fff; border: 0; border-radius: 4px; cursor: pointer;">
+                        Subscribe
+                    </button>
+                </form>
+                <p id="maillist-thanks" class="mt-3" style="display:none; color: #2a7a2a;">
+                    Thanks! Check your inbox to confirm your subscription.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-bottom text-center py-5">
+        <div class="container px-5">
+            <div class="text-white-50 small">
+                <div id="copyright-text" class="mb-2"></div>
+                <a id="github-link" href="https://github.com/lunamos">Github</a>
+                <span class="mx-1">&middot;</span>
+                <a id="license-link" href="https://github.com/lunamos/lunamos.github.io/blob/master/LICENSE">License</a>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="static/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="static/js/marked.min.js"></script>
+    <script>
+        MathJax = { tex: { inlineMath: [['$', '$']] } };
+    </script>
+    <script type="text/javascript" id="MathJax-script"
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <script type="text/javascript" src="static/js/js-yaml.min.js"></script>
+    <script type="text/javascript" src="static/js/post.js"></script>
+</body>
+
+</html>
