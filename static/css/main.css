@@ -3,6 +3,9 @@
 
 :root{
     --h-title-color:#3948d2;
+    --page-max-width: none;
+    --page-side-padding: max(24px, 4vw);
+    --publication-image-width: 500px;
 }
 
 .header {
@@ -77,8 +80,59 @@ section .main-body{
     font-weight: 600;
 }
 
-section .container {
-    max-width: 800px; /* 设置你想要的宽度，比如 800px */
+.container {
+    width: 100%;
+    max-width: var(--page-max-width);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.container.px-5 {
+    padding-left: var(--page-side-padding) !important;
+    padding-right: var(--page-side-padding) !important;
+}
+
+#publications-md table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+#publications-md td:first-child {
+    width: min(40%, calc(var(--publication-image-width) + 20px));
+}
+
+#publications-md td {
+    overflow-wrap: anywhere;
+}
+
+#publications-md img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+@media screen and (max-width: 767px) {
+    #publications-md table,
+    #publications-md tbody,
+    #publications-md tr,
+    #publications-md td {
+        display: block;
+        width: 100%;
+    }
+
+    #publications-md td:first-child {
+        width: 100%;
+        padding-right: 0 !important;
+    }
+
+    #publications-md img {
+        max-width: var(--publication-image-width);
+        margin: 0 auto;
+    }
+
+    #publications-md tr + tr {
+        margin-top: 1rem;
+    }
 }
 
 .bg-gradient-primary-to-secondary-light {
