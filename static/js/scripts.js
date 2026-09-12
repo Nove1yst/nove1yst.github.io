@@ -10,6 +10,15 @@ window.addEventListener('DOMContentLoaded', event => {
     // Activate Bootstrap scrollspy on the main nav element
     const mainNav = document.body.querySelector('#mainNav');
     if (mainNav) {
+        // Center the banner within the area visible below the fixed navigation.
+        const updateBannerNavHeight = () => {
+            document.documentElement.style.setProperty(
+                '--banner-nav-height', `${mainNav.getBoundingClientRect().height}px`
+            );
+        };
+        updateBannerNavHeight();
+        new ResizeObserver(updateBannerNavHeight).observe(mainNav);
+
         new bootstrap.ScrollSpy(document.body, {
             target: '#mainNav',
             offset: 74,
