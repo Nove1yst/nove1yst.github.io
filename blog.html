@@ -1,95 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title id="title">Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Junran Wang — AI safety, mechanistic interpretability, and language and multimodal models. M.S. student at Georgia Tech." />
+    <meta name="author" content="Junran Wang" />
+    <meta name="theme-color" content="#101217" />
+    <title id="title">Blog · Junran Wang</title>
     <link rel="icon" type="image/x-icon" href="static/assets/jwang.ico" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,600;1,600&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,500;0,600;0,700;1,300;1,500;1,600;1,700&amp;display=swap"
-        rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;1,400&amp;display=swap"
-        rel="stylesheet" />
-    <link type="text/css" href="static/css/styles.css" rel="stylesheet" />
-    <link type="text/css" href="static/css/main.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700;800&amp;family=Rajdhani:wght@600;700&amp;display=swap" rel="stylesheet" />
+    <link href="static/css/main.css" rel="stylesheet" />
 </head>
-
-<body id="page-top">
-    <nav class="header navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
-        <div class="container px-5">
-            <a id="page-top-title" class="navbar-brand fw-bold" href="index.html"></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                MENU
-                <i class="bi-list"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link me-lg-3" href="index.html">HOME</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link me-lg-3 active" href="blog.html">BLOG</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link me-lg-3" href="index.html#news">NEWS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link me-lg-3" href="index.html#publications">PUBLICATIONS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link me-lg-3" href="index.html#awards">AWARDS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link me-lg-3" href="docs/jwang_cv.pdf">CV</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <section class="top-section" style="background-image: url('static/assets/img/THU.jpg');">
-        <div class="top-section-content">
-            <div class="container px-5">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h2 class="text-white display-3 lh-1 mb-4 font-alt">Blog</h2>
-                    </div>
+<body id="page-top" data-page="blog">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="site-shell">
+        <header class="site-header" id="mainNav">
+            <a class="brand" href="index.html" aria-label="Junran Wang — home"><img src="static/assets/img/Nove1yst.png" alt="Nove1yst" width="2172" height="724" fetchpriority="high" /></a>
+            <button class="menu-toggle action-link" type="button" aria-controls="site-navigation" aria-expanded="false">Menu <span aria-hidden="true">☰</span></button>
+            <nav class="site-navigation" id="site-navigation" aria-label="Main navigation">
+                <a class="nav-link" href="index.html#home">ABOUT</a>
+                <a class="nav-link" href="index.html#news">NEWS</a>
+                <a class="nav-link" href="index.html#publications">PUBLICATIONS</a>
+                <a class="nav-link is-active" aria-current="page" href="blog.html">BLOG</a>
+                <a class="nav-link" href="docs/jwang_cv.pdf">CV</a>
+            </nav>
+            <span class="finish-line" aria-hidden="true"></span>
+        </header>
+        <main id="main-content" class="reading-layout">
+            <section id="blog" class="panel research-notes-section" aria-labelledby="blog-heading">
+                <header class="section-heading"><div class="title-plate"><span class="section-number" aria-hidden="true">01</span><h1 id="blog-heading">Research Notes</h1></div><span class="heading-rail" aria-hidden="true"><span class="rail-fins"><i></i><i></i><i></i></span><span class="rail-track"></span></span></header>
+                <div class="frame-content">
+                    <p class="page-intro">Research, ideas, and work in progress.</p>
+                    <div id="blog-list" class="blog-list" aria-busy="true"><p class="loading-copy">Loading posts…</p></div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="bg-gradient-primary-to-secondary-light py-5" id="blog">
-        <div class="container px-5">
-            <header>
-                <h2 id="blog-subtitle"><i class="bi bi-journal-text"></i>&nbsp;POSTS</h2>
-            </header>
-            <div class="main-body" id="blog-list"></div>
-        </div>
-    </section>
-
-    <footer class="bg-bottom text-center py-5">
-        <div class="container px-5">
-            <div class="text-white-50 small">
-                <div id="copyright-text" class="mb-2"></div>
-                <a id="github-link" href="https://github.com/lunamos">Github</a>
-                <span class="mx-1">&middot;</span>
-                <a id="license-link" href="https://github.com/lunamos/lunamos.github.io/blob/master/LICENSE">License</a>
-            </div>
-        </div>
-    </footer>
-
-    <script type="text/javascript" src="static/js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript" src="static/js/js-yaml.min.js"></script>
-    <script type="text/javascript" src="static/js/blog.js"></script>
+            </section>
+        </main>
+        <noscript><p class="notice">Enable JavaScript to load the blog posts.</p></noscript>
+        <footer class="site-footer">
+            <p id="copyright-text">&copy; Junran Wang 2026. All Rights Reserved.</p>
+            <a href="#page-top" class="back-to-top">Back to top <span aria-hidden="true">↗</span></a>
+            <span class="finish-line" aria-hidden="true"></span>
+        </footer>
+    </div>
+    <script src="static/js/js-yaml.min.js" defer></script>
+    <script src="static/js/site.js" defer></script>
+    <script src="static/js/blog.js" defer></script>
 </body>
-
 </html>

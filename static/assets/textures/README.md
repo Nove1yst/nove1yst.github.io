@@ -1,0 +1,15 @@
+# Weathered steel UI material
+
+`weathered-steel.jpg` is an original texture generated with the built-in ImageGen tool for this website, exported as JPEG for web delivery. No third-party texture pack is used.
+
+The shared material is referenced by `--metal-texture` in `static/css/main.css`. Title plates and frame edges retain the original steel color; the first and third decorative fins use CSS blending to tint the same texture purple. The center fin remains silver. A continuous 3px frame with deeper inner chamfers creates thicker metal corners. The rim is drawn above the header using a single polygon with an inner cutout, so the four miters join without header overlap. Title plates share the outer frame origin and 45-degree cut geometry. Reading content has its own inset, clipped region. The right-column headings retain three short metal fins, vertically centered between the panel top and the gradient rail. Their top inset and the gap below them are calculated from the same heading height and rail dimensions. Sidebar headings have no fins. The rail extends left underneath the shortened fins and transitions from silver steel to purple. Publication and blog cards use the same lighter 1px outlines inside shared steel enclosures. Sidebar title plates fit their labels instead of filling the available width.
+
+## Generation prompt
+
+Use case: stylized-concept. Asset type: production-ready seamless metal surface texture for an early-2000s street-racing video game website UI.
+
+Generate ONE square, full-bleed, approximately 1536 x 1536 texture map of gently weathered silver-grey brushed machined steel, photographed perfectly straight on, perfectly flat, edge to edge. This is raw material to be tiled and clipped by CSS into beveled title plates and reinforced metal borders, not a finished interface or physical object.
+
+Material: dense very fine irregular abrasive grain, soft cloudy patches of aged nickel and rubbed aluminium, fine mostly horizontal brushing, a scattering of small cross-direction scratches and scuffs, worn high spots and tiny dark pits. Rich tactile metallic surface resembling the satin gunmetal/silver title plates of a 2003 underground street-racing garage menu. The weathering must be visible at web UI scale, nuanced but clearly more than a flat gradient. Overall mid-light neutral cool steel grey with medium tonal contrast, mostly midtones. Broad diffuse even lighting, no central spotlight, no white blown-out streak, no deep black areas. Microtexture should be detailed but not look like glitter. The lightness should be even at all four edges for tiling.
+
+Constraints: seamless tileable texture, single uniform material filling the entire image, no frame, no border, no bolts, no panels or seams, no lettering, no logos, no numbers, no watermark, no icons, no objects, no perspective, no rust, no purple color. Silver neutral only; purple anodized variants will be tinted in CSS from this same material. Keep all edges as the same full-bleed metal surface.

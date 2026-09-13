@@ -1,58 +1,49 @@
-# A simple Github Pages template for academic personal website.
+# Junran Wang's personal website
 
-[![Screenshot of the Website](https://github.com/JerryYin777/JerryYin777.github.io/blob/master/screenshot.png)](https://jerrysys.top/)
+A static academic website with a 2000s street-racing interface: purple chrome branding, beveled panels, and a responsive profile / research layout. Hosted on GitHub Pages; no build step is needed.
 
-## Introduction
+## Local preview
 
-This is an academic personal website (Congrui Yin) template based on bootstrap. This demo refers to [senli1073](https://github.com/senli1073/senli1073.github.io), thx to Mr.Sen Li's template.
+From the repository root:
 
-This template supports markdown files as input content, and you don't need to build the webpage before deployment. When the webpage is loaded, the markdown files will be automatically parsed and embedded into the page.
-
-Demo: https://jerrysys.top
-
-
-## Getting Start
-### 1. Fork this repository
-The repository name should be `<username>.github.io`, which will also be your website's URL.
-
-
-### 2. Edit page content
-
-(1) Go to the folder where you want to store your project, and clone the new repository:
-```
-git clone https://github.com/<username>/<username>.github.io.git
-```
-The directory structure is as follows:
-
-```.
-.
-├── contents
-└── static
-    ├── assets
-    │   └── img
-    ├── css
-    └── js
+```bash
+python3 -m http.server 8000 --bind 127.0.0.1
 ```
 
-(2) Edit the content of each section, which corresponds to `contents/*.md`.
+Open <http://localhost:8000>. Keep the terminal running while previewing; press `Ctrl+C` to stop. If an old stylesheet is cached, hard refresh with `Cmd+Shift+R` on macOS or `Ctrl+Shift+R` on Windows/Linux.
 
-(3) Edit the title, copyright information and other text of the website in `contents/config.yml`
+Serve the site over HTTP rather than opening `index.html` directly: the pages fetch their Markdown and YAML content.
 
-(4) Replace background image and photo with new ones for your web pages in `static/assets/img`
+## Edit content
 
-(5) Push it: 
-```
-git commit -am 'init'
-git push
-```
+| File | Content |
+| --- | --- |
+| `contents/profile.md` | Name, affiliation, location, contact buttons, and education in the profile card |
+| `contents/home.md` | About Me and research interests |
+| `contents/news.md` | News, newest first, grouped under month headings |
+| `contents/publications.md` | Publication cards, author lists, images, venue badges, and links |
+| `contents/experience.md` | Professional experience |
+| `contents/awards.md` | Awards |
+| `contents/friends.md` | Friend links |
+| `contents/config.yml` | Site title and copyright |
+| `contents/blog/posts.yml` | Blog titles, dates, summaries, and slugs |
+| `contents/blog/<slug>.md` | Blog post content |
 
+Publication venue classes are shared by conference: `venue-badge--icml`, `venue-badge--iclr`, and `venue-badge--arxiv`. Use `<strong>Spotlight</strong>` inside the venue label for emphasis.
 
-### 3. Enjoy
+The top-left navigation logo uses the original `static/assets/img/Nove1yst.png` artwork; there is no separate banner section. The portrait uses `static/assets/img/jwang.jpg`. Publications share one steel enclosure, with a thin, light outline around each paper card.
 
-Fire up a browser and go to `https://<username>.github.io`
+## Layout and behavior
 
+- `static/css/main.css`: shared appearance and responsive layouts.
+- `static/assets/textures/weathered-steel.jpg`: generated metal material for title plates, purple/silver fins, and reinforced frames; its generation prompt is in `static/assets/textures/README.md`.
+- `static/js/site.js`: navigation, configuration, and Markdown loading helpers.
+- `static/js/scripts.js`: homepage content loading.
+- `static/js/blog.js` and `static/js/post.js`: blog listing and article loading.
+- `index.html`, `blog.html`, and `post.html`: page structure.
 
+The mobile navigation supports keyboard use and Escape to close. Links and controls have visible focus states, and reduced-motion preferences are respected. MathJax, Marked, and the YAML parser are served locally; web fonts use Google Fonts with system fallbacks.
 
 ## License
 
-Copyright 2024, Congrui Yin and controlled via the MIT license, a permissive open-source (free software) license. You can copy and mess with this template.
+Based on the academic website template by Congrui Yin. The original template is distributed under the MIT license; see `LICENSE`.

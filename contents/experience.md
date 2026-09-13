@@ -1,0 +1,3 @@
+- **Infplane AI Ltd.** (Jun 2024 - Apr 2025)
+  - Developed automated hyperparameter optimization algorithms to reduce training costs for LLMs.
+  - Developed a non-supervision graph-based algorithm for root-cause analysis of a computation cluster.

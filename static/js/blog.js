@@ -1,58 +1,54 @@
-const content_dir = 'contents/';
-const blog_dir = 'contents/blog/';
-const config_file = 'config.yml';
-
-function escapeHtml(s) {
-    return String(s).replace(/[&<>"']/g, c => ({
-        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-    }[c]));
-}
-
 window.addEventListener('DOMContentLoaded', () => {
-    // Site-wide config (title, copyright, etc.)
-    fetch(content_dir + config_file)
-        .then(r => r.text())
-        .then(text => {
-            const yml = jsyaml.load(text);
-            Object.keys(yml).forEach(key => {
-                const el = document.getElementById(key);
-                if (el) el.innerHTML = yml[key];
-            });
-        })
-        .catch(err => console.log(err));
+    Site.configure('Blog');
+    const list = document.getElementById('blog-list');
+    const formatDate = value => value instanceof Date ? value.toISOString().slice(0, 10) : String(value || '');
 
-    // Blog post listing
-    fetch(blog_dir + 'posts.yml')
-        .then(r => r.text())
-        .then(text => {
-            const posts = jsyaml.load(text) || [];
-            posts.sort((a, b) => String(b.date).localeCompare(String(a.date)));
-            const html = ['<table>'];
-            posts.forEach(p => {
-                const slug = encodeURIComponent(p.slug);
-                html.push(`
-  <tr>
-    <td style="vertical-align: top; padding-bottom: 14px;">
-      <p style="margin-bottom: 1px;">
-        <strong><a href="post.html?post=${slug}">${escapeHtml(p.title)}</a></strong>
-      </p>
-      <p style="margin-top: 1px; margin-bottom: 1px;">
-        <em>${escapeHtml(p.date || '')}</em>
-      </p>
-      ${p.summary ? `<p style="margin-top: 1px; margin-bottom: 1px;">${escapeHtml(p.summary)}</p>` : ''}
-    </td>
-  </tr>`);
-            });
-            html.push('</table>');
-            const list = document.getElementById('blog-list');
-            if (posts.length === 0) {
-                list.innerHTML = '<p><em>No posts yet.</em></p>';
-            } else {
-                list.innerHTML = html.join('');
+    async function loadPosts() {
+        list.setAttribute('aria-busy', 'true');
+        try {
+            const posts = jsyaml.load(await Site.fetchText('contents/blog/posts.yml')) || [];
+            posts.sort((a, b) => formatDate(b.date).localeCompare(formatDate(a.date)));
+            list.replaceChildren();
+            if (!posts.length) {
+                list.textContent = 'No posts yet.';
             }
-        })
-        .catch(err => {
-            console.log(err);
-            document.getElementById('blog-list').innerHTML = '<p><em>Failed to load posts.</em></p>';
-        });
+            posts.forEach(post => {
+                const card = document.createElement('article');
+                card.className = 'blog-card';
+                const content = document.createElement('div');
+                content.className = 'blog-card-content';
+                card.append(content);
+                const date = document.createElement('time');
+                date.className = 'eyebrow';
+                // YAML can parse unquoted dates as Date objects.
+                const dateText = formatDate(post.date);
+                date.dateTime = dateText;
+                date.textContent = dateText;
+                const heading = document.createElement('h2');
+                const titleLink = document.createElement('a');
+                titleLink.href = `post.html?post=${encodeURIComponent(post.slug)}`;
+                titleLink.textContent = post.title;
+                heading.append(titleLink);
+                content.append(date, heading);
+                if (post.summary) {
+                    const summary = document.createElement('p');
+                    summary.textContent = post.summary;
+                    content.append(summary);
+                }
+                const readLink = document.createElement('a');
+                readLink.href = titleLink.getAttribute('href');
+                readLink.className = 'action-link';
+                readLink.textContent = 'Read note ↗';
+                readLink.setAttribute('aria-label', `Read ${post.title}`);
+                content.append(readLink);
+                list.append(card);
+            });
+        } catch (error) {
+            console.error(error);
+            Site.showError(list, 'The posts could not be loaded.', loadPosts);
+        } finally {
+            list.setAttribute('aria-busy', 'false');
+        }
+    }
+    loadPosts();
 });
