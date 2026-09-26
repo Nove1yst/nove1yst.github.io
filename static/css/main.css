@@ -423,7 +423,7 @@ figure, p, h1, h2, h3, h4 { margin: 0; }
 .publication-authors strong { color: #dfe4ed; font-weight: 700; }
 .publication-venue { margin: 10px 0; }
 .venue-badge { display: inline-block; max-width: 100%; padding: 3px 8px; border: 1px solid; border-radius: 3px; font-size: 12px; font-weight: 500; line-height: 1.5; }
-.venue-badge--icml { color: #e1a5ff; background: #6f258326; border-color: #ac54d0; }
+.venue-badge--icml, .venue-badge--neurips { color: #e1a5ff; background: #6f258326; border-color: #ac54d0; }
 .venue-badge--iclr { color: #b1ef8b; background: #365c2126; border-color: #6da04c; }
 .venue-badge--arxiv { color: #ffafb9; background: #6e233a26; border-color: #b65270; }
 .venue-badge strong { font-weight: 800; }

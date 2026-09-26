@@ -29,7 +29,7 @@ Serve the site over HTTP rather than opening `index.html` directly: the pages fe
 | `contents/blog/posts.yml` | Blog titles, dates, summaries, and slugs |
 | `contents/blog/<slug>.md` | Blog post content |
 
-Publication venue classes are shared by conference: `venue-badge--icml`, `venue-badge--iclr`, and `venue-badge--arxiv`. Use `<strong>Spotlight</strong>` inside the venue label for emphasis.
+Publication venue classes are shared by conference: `venue-badge--neurips`, `venue-badge--icml`, `venue-badge--iclr`, and `venue-badge--arxiv`. Use `<strong>Spotlight</strong>` inside the venue label for emphasis.
 
 The top-left navigation logo uses the original `static/assets/img/Nove1yst.png` artwork; there is no separate banner section. The portrait uses `static/assets/img/jwang.jpg`. Publications share one steel enclosure, with a thin, light outline around each paper card.
 

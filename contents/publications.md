@@ -23,7 +23,7 @@
     <div class="publication-details">
       <h3 class="publication-title">How Far Are VLMs from Privacy Awareness in the Physical World? An Empirical Study</h3>
       <p class="publication-authors"><strong>Junran Wang</strong>*, Xinjie Shen*, Zehao Jin*, Pan Li</p>
-      <p class="publication-venue"><span class="venue-badge venue-badge--icml">ICML 2026 AIWILD Workshop</span></p>
+      <p class="publication-venue"><span class="venue-badge venue-badge--neurips">NeurIPS 2026</span></p>
       <div class="publication-links">
         <a class="action-link" href="https://arxiv.org/abs/2605.05340">Paper</a>
         <a class="action-link" href="https://immersed-privacy.github.io">Project</a>
@@ -42,7 +42,7 @@
     <div class="publication-details">
       <h3 class="publication-title">Beyond Steering Vectors: Flow-based Activation Steering For Inference-Time Intervention</h3>
       <p class="publication-authors">Zehao Jin*, Ruixuan Deng*, <strong>Junran Wang</strong>*, Xinjie Shen, Pan Li</p>
-      <p class="publication-venue"><span class="venue-badge venue-badge--icml">ICML 2026 MechInterp Workshop</span></p>
+      <p class="publication-venue"><span class="venue-badge venue-badge--neurips">NeurIPS 2026</span></p>
       <div class="publication-links">
         <a class="action-link" href="https://arxiv.org/abs/2605.05892">Paper</a>
         <a class="action-link" href="https://flas-ai.github.io">Project</a>

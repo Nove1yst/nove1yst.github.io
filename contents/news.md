@@ -1,6 +1,6 @@
-#### Jun, 2026
+#### Sep, 2026
 
-[Beyond Steering Vectors](https://flas-ai.github.io) was accepted to the ICML 2026 MechInterp Workshop, and [ImmersedPrivacy](https://immersed-privacy.github.io) was accepted to the ICML 2026 AIWILD Workshop!
+[Beyond Steering Vectors (FLAS)](https://flas-ai.github.io) and [ImmersedPrivacy](https://immersed-privacy.github.io) were accepted to **NeurIPS 2026**!
 
 #### Mar, 2026
 
