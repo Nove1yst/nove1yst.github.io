@@ -1,0 +1,322 @@
+%-----------------------------------------------------------------------------------------------------------------------------------------------%
+%	The MIT License (MIT)
+%
+%	Copyright (c) 2021 Jitin Nair
+%
+%	Permission is hereby granted, free of charge, to any person obtaining a copy
+%	of this software and associated documentation files (the "Software"), to deal
+%	in the Software without restriction, including without limitation the rights
+%	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+%	copies of the Software, and to permit persons to whom the Software is
+%	furnished to do so, subject to the following conditions:
+%	
+%	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+%	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+%	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+%	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+%	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+%	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+%	THE SOFTWARE.
+%	
+%
+%-----------------------------------------------------------------------------------------------------------------------------------------------%
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT DEFINITION
+%----------------------------------------------------------------------------------------
+
+% article class because we want to fully customize the page and not use a cv template
+\documentclass[a4paper,10pt]{article}
+
+%----------------------------------------------------------------------------------------
+%	FONT
+%----------------------------------------------------------------------------------------
+
+% % fontspec allows you to use TTF/OTF fonts directly
+% \usepackage{fontspec}
+% \defaultfontfeatures{Ligatures=TeX}
+
+% % modified for ShareLaTeX use
+% \setmainfont[
+% SmallCapsFont = Fontin-SmallCaps.otf,
+% BoldFont = Fontin-Bold.otf,
+% ItalicFont = Fontin-Italic.otf
+% ]
+% {Fontin.otf}
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES
+%----------------------------------------------------------------------------------------
+\usepackage{url}
+\usepackage{parskip} 	
+
+%other packages for formatting
+\RequirePackage{color}
+\RequirePackage{graphicx}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[scale=0.9]{geometry}
+
+%tabularx environment
+\usepackage{tabularx}
+
+%for lists within experience section
+\usepackage{enumitem}
+
+% centered version of 'X' col. type
+\newcolumntype{C}{>{\centering\arraybackslash}X} 
+
+%to prevent spillover of tabular into next pages
+\usepackage{supertabular}
+\usepackage{tabularx}
+\newlength{\fullcollw}
+\setlength{\fullcollw}{0.47\textwidth}
+
+%custom \section
+\usepackage{titlesec}				
+\usepackage{multicol}
+\usepackage{multirow}
+
+%CV Sections inspired by: 
+%http://stefano.italians.nl/archives/26
+\titleformat{\section}{\Large\scshape\raggedright}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{6pt}{6pt}
+
+%for publications
+\usepackage[style=authoryear, sorting=none, maxbibnames=20, minbibnames=1, backend=biber]{biblatex}
+
+%Setup hyperref package, and colours for links
+\usepackage[unicode, draft=false]{hyperref}
+\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+\hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour}
+\addbibresource{citations.bib}
+\setlength\bibitemsep{0.3em}
+
+
+%for social icons
+\usepackage{fontawesome5}
+
+%debug page outer frameså
+%\usepackage{showframe}
+
+
+% % job listing environments
+% \newenvironment{jobshort}[2]
+%     {
+%     \begin{tabularx}{\linewidth}{@{}l X r@{}}
+%     \textbf{#1} & \hfill &  #2 \\[3pt]
+%     \end{tabularx}
+%     }
+%     {
+%     }
+
+% \newenvironment{joblong}[2]
+%     {
+%     \begin{tabularx}{\linewidth}{@{}l X r@{}}
+%     \textbf{#1} & \hfill &  #2 \\[3pt]
+%     \end{tabularx}
+%     \begin{minipage}[t]{\linewidth}
+%     \begin{itemize}[nosep,after=\strut, leftmargin=1em, itemsep=1.5pt,label=--]
+%     }
+%     {
+%     \end{itemize}
+%     \end{minipage}    
+%     }
+
+\newenvironment{jobshort}[4] % 接受4个参数：职位, 时间, 组织, 导师/负责人
+    {
+    \begin{tabularx}{\linewidth}{@{}l X r@{}}
+    \textbf{#1} & \hfill &  #2 \\
+    \textit{#3} & \hfill & \small Advisor: #4 \\[3pt]
+    \end{tabularx}
+    }
+    {
+    }
+
+\newenvironment{joblong}[4] % 接受4个参数：职位, 时间, 组织, 导师/负责人
+    {
+    \begin{tabularx}{\linewidth}{@{}l X r@{}}
+    \textbf{#1} & \hfill &  #2 \\
+    \textit{#3} & \hfill & Advisor: #4 \\[3pt]
+    \end{tabularx}
+    \begin{minipage}[t]{\linewidth}
+    \begin{itemize}[nosep,after=\strut, leftmargin=1em, itemsep=2pt,label=--]
+    }
+    {
+    \end{itemize}
+    \end{minipage}    
+    % \vspace{1pt}
+    }
+
+\newenvironment{joblongnoadvisor}[3] % 接受4个参数：职位, 时间, 组织, 导师/负责人
+    {
+    \begin{tabularx}{\linewidth}{@{}l X r@{}}
+    \textbf{#1} & \hfill &  #2 \\
+    \textit{#3} & \hfill & \\[3pt]
+    \end{tabularx}
+    \begin{minipage}[t]{\linewidth}
+    \begin{itemize}[nosep,after=\strut, leftmargin=1em, itemsep=2pt,label=--]
+    }
+    {
+    \end{itemize}
+    \end{minipage}    
+    % \vspace{2pt}
+    }
+
+\usepackage{setspace}
+\setstretch{0.9}
+
+%----------------------------------------------------------------------------------------
+%	BEGIN DOCUMENT
+%----------------------------------------------------------------------------------------
+\begin{document}
+
+% non-numbered pages
+\pagestyle{empty} 
+
+%----------------------------------------------------------------------------------------
+%	TITLE
+%----------------------------------------------------------------------------------------
+
+% \begin{tabularx}{\linewidth}{ @{}X X@{} }
+% \huge{Your Name}\vspace{2pt} & \hfill \emoji{incoming-envelope} email@email.com \\
+% \raisebox{-0.05\height}\faGithub\ username \ | \
+% \raisebox{-0.00\height}\faLinkedin\ username \ | \ \raisebox{-0.05\height}\faGlobe \ mysite.com  & \hfill \emoji{calling} number
+% \end{tabularx}
+
+\begin{tabularx}{\linewidth}{@{} C @{}}
+\Huge{Junran Wang} \\[7.5pt]
+\href{https://github.com/Nove1yst}{\raisebox{-0.05\height}\faGithub\ Nove1yst} \ $|$ \ 
+\href{https://www.linkedin.com/in/junran-wang-583a89359/}{\raisebox{-0.05\height}\faLinkedin\ LinkedIn} \ $|$ \
+\href{https://nove1yst.github.io}{\raisebox{-0.05\height}\faGlobe \ nove1yst.github.io} \ $|$ \ 
+\href{jwang3668@gatech.edu}{\raisebox{-0.05\height}\faEnvelope \ nove1yst@gatech.edu} \ $|$ \ 
+\href{tel:6788625631}{\raisebox{-0.05\height}\faMobile \ (678)862-5631} \\
+\end{tabularx}
+
+%----------------------------------------------------------------------------------------
+%	EDUCATION
+%----------------------------------------------------------------------------------------
+% \section{Education}
+% \begin{tabularx}{\linewidth}{@{}l X@{}}	
+% 2025 - present &  Master (ECE) at \textbf{Georgia Institute of Technology} \hfill \normalsize (GPA: 4.0/4.0) \\
+
+% 2021 - 2025 & Bachelor's Degree at \textbf{Tsinghua University} \hfill (GPA: 4.0/4.0) \\ 
+
+% 2024 & Visiting Scholar at \textbf{SUNY Buffalo} \hfill
+% \end{tabularx}
+\section{Education}
+\begin{tabularx}{\linewidth}{@{}l X r@{}}	
+2025 - Present & \textbf{Georgia Institute of Technology} & Atlanta, GA \\
+& Master of Science in \textit{Electrical and Computer Engineering} & GPA: 4.0/4.0 \\
+% & \small \textit{Relevant Coursework: [Course 1, Course 2, Course 3]} & \\
+[3pt]
+
+2021 - 2025 & \textbf{Tsinghua University} & Beijing, China \\
+& Bachelor of Engineering in \textit{Vehicle Engineering (Electronic Information)} & GPA: 4.0/4.0 \\
+% & \small \textit{Honors: [e.g., National Scholarship, Outstanding Graduate]} & \\
+[3pt]
+
+2024 & \textbf{University at Buffalo, the State University of New York} & Buffalo, NY \\
+& Visiting Scholar in \textit{Department of Computer Science and Engineering} & \\
+\end{tabularx}
+  
+%Projects
+\section{Research Experience}
+\begin{joblong}{\textsc{SEAD}: A State-Based Perspective on Attack and Defense in Tool-Using Agents}{Jul 2026 - Present}{Georgia Institute of Technology \ $|$ \ Co-first Author \ $|$ \ \href{https://everywheresafety.github.io/sead/}{\textnormal{\faGlobe\ \texttt{Website}}}}{Dr. Pan Li}
+\item Formulated attack and defense for tool-using agents as \textbf{partially observed state control}, grounding safety in persistent environment changes and harmful-state reachability.
+\item Developed \textsc{DART} and \textsc{SAGE} for adversarial evaluation and \textbf{state-aware pre-execution defense}, supported by replayable tool environments and task-specific executable checks.
+\item \textsc{SAGE} preserved \textbf{95.79\%} of benign trajectories and intercepted \textbf{92.73\%} of harmful paths in recorded evaluations; reduced executable attack success from \textbf{48.0\% to 4.0\%} in online evaluation.
+\end{joblong}
+\begin{joblongnoadvisor}{\textsc{AcFlow}: Controlling T2I DiTs via Learned Conditional Activation Flow}{Jul 2026 - Sept 2026}{Georgia Institute of Technology \ $|$ \ First Author \ $|$ \ \href{https://github.com/Nove1yst/AcFlow}{\textnormal{\faGlobe\ \texttt{Website}}}}
+\item Introduced \textsc{AcFlow}, a learned concept-conditioned \textbf{velocity field} that steers image-token activations in frozen text-to-image diffusion transformers through \textbf{token-specific, activation-dependent updates}.
+\item Enabled \textbf{continuous} style control and concept suppression through adjustable flow horizons, with weights \textbf{shared across concepts} within each task family and \textbf{zero-shot generalization}.
+\item Achieved the \textbf{best style--content trade-off} among evaluated baselines.
+\end{joblongnoadvisor}
+\begin{joblong}{\textsc{ImmersedPrivacy}: Evaluating VLMs'Privacy Awareness in the Physical World}{Jan 2026 - May 2026}{Georgia Institute of Technology \ $|$ \ First Author \ $|$ \ \href{https://immersed-privacy.github.io}{\textnormal{\faGlobe\ \texttt{Website}}}}{Dr. Pan Li}
+\item Developed \textsc{ImmersedPrivacy}, a first-of-its-kind \textbf{interactive Visual+Audio benchmark} to evaluate VLMs' privacy awareness in dynamic physical environments.
+\item Engineered a three-tier hierarchical framework built on a customized Unity simulator featuring 53 complex scenarios and 500+ procedurally generated instances.
+\item Implemented an \textbf{interactive evaluation pipeline}, enabling agents to actively navigate environments and resolve task-privacy conflicts through multi-turn, closed-loop decision making.
+\end{joblong}
+\begin{joblong}{{Beyond Steering Vector: Flow-based Activation Steering}}{Mar 2026 - May 2026}{Georgia Institute of Technology \ $|$ \ Co-first Author \ $|$ \href{https://flas-ai.github.io}{\textnormal{\faGlobe\ \texttt{Website}}}}{Dr. Chao Zhang}
+\item Introduced \textsc{FLAS}, a concept-conditioned velocity field that steers frozen LLM activations through adaptive, multi-step, and position-sensitive flows using positive examples alone.
+\item Designed a lightweight FlowBlock architecture with cross-attention and Euler integration, enabling zero-shot control of unseen concepts and continuous steering-strength adjustment without per-concept tuning.
+\item Achieved held-out HMean scores of \textbf{1.015/1.113} on Gemma-2-2B/9B-IT, making \textsc{FLAS} the first learned steering method to consistently outperform in-context prompting on AxBench.
+\end{joblong}
+
+% \begin{joblong}{Accelerated Sequential Flow Matching: A Bayesian Filtering Perspective}{Oct 2025 - Jan 2026}{Georgia Institute of Technology}{Dr. Pan Li}
+% \item Introduced a novel Sequential Flow Matching framework that treats streaming inference as a recursive Bayesian belief update, enabling flow-based models to leverage historical predictions as a principled "warm start" instead of re-sampling from scratch.
+% \item Achieved up to \textbf{50$\times$ speedup} in sampling efficiency by reducing Neural Function Evaluation (NFE) while maintaining competitive performance with full-step diffusion.
+% \item Validated the framework across diverse tasks, including smoke control and Lorenz state estimation, significantly reducing inference latency to \textbf{$\sim$30ms} for control tasks.
+% \end{joblong}
+
+
+%----------------------------------------------------------------------------------------
+% EXPERIENCE SECTIONS
+%----------------------------------------------------------------------------------------
+
+% %Interests/ Keywords/ Summary
+% \section{Summary}
+% An Electrical and Computer Engineering graduate student from Georgia Institute of Technology with strong research and practical experience in multimodal large language models and 3D computer vision. Seeking a summer 2026 internship as a Research Assistant or Machine Learning Engineer.
+% % This CV can also be automatically complied and published using GitHub Actions. For details, \href{https://github.com/jitinnair1/autoCV}{click here}.
+
+%Experience
+\section{Work Experience}
+
+
+\begin{joblongnoadvisor}{Machine Learning Engineer Intern}{Sept 2024 - May 2025}{Infplane AI Ltd.}
+\item Developed automated hyperparameter optimization algorithms to reduce training costs for LLMs.
+\item Developed a non-supervision graph-based algorithm for root-cause analysis of a computation cluster.
+% \item Developed hardware and software of a desktop conversation robot with basic interactions ability
+\end{joblongnoadvisor}
+
+%----------------------------------------------------------------------------------------
+%	PUBLICATIONS
+%----------------------------------------------------------------------------------------
+\section{Publications}
+\begin{refsection}[citations.bib]
+\nocite{*}
+\printbibliography[heading=none]
+\end{refsection}
+
+% @article{dummypaper,
+% 	title = {Paper: This is the name of the paper },
+% 	volume = {99},
+% 	url = {https://some-link.com},
+% 	abstract = {},
+% 	number = {18},
+% 	journal = {Some Journal},
+% 	author = {Junran Wang, Xinjie Shen and Zehao Jin},
+% 	month = sep,
+% 	year = {2019},
+% 	keywords = {some keyword, another keyword},
+% 	pages = {2200--2300},
+% }
+
+
+\section{Honors \& Awards}
+\begin{tabularx}{\linewidth}{@{}l X@{}}	
+National Scholarship & Top 2\% university students in China \hfill 2024 \\
+
+Overall Excellence Scholarship & Top 5\% in Tsinghua University \hfill 2023 \\ 
+
+Finalist in Interdisciplinary Contest in Modeling (ICM) & Top 2\% teams worldwide \hfill 2023 \\ 
+
+Overall Excellence Scholarship & Top 5\% in Tsinghua University \hfill 2022
+\end{tabularx}
+
+%----------------------------------------------------------------------------------------
+%	SKILLS
+%----------------------------------------------------------------------------------------
+\section{Skills}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+Programming Languages &  \normalsize{C, C++, Python, familiar with RUST}\\
+ML Frameworks \& Serving & \normalsize{PyTorch, CUDA, Hugging Face Transformers, vLLM, SGLang} \\
+AI Agent Infra & \normalsize{Post-training, MCP, MCP, Trajectory Analysis} \\
+Software Engineering & \normalsize{Docker, Docker Compose, Slurm, Git} \\
+Rendering & \normalsize{Unity Engine, Blender, Meshlab} \\
+Languages & Mandarin (native), English (TOEFL 115), Italian (entry-level) \\
+\end{tabularx}
+
+\vfill
+\center{\footnotesize Last updated: \today}
+
+\end{document}

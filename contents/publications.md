@@ -1,6 +1,24 @@
 <article class="publication-card">
   <div class="publication-content">
     <figure class="publication-figure">
+      <img src="static/assets/img/pub/sead.svg" alt="SEAD state-based framework for attack and defense in tool-using agents" loading="lazy" decoding="async" />
+    </figure>
+    <div class="publication-details">
+      <h3 class="publication-title">SEAD: A State-Based Perspective on Attack and Defense in Tool-Using Agents</h3>
+      <p class="publication-authors">Xinjie Shen*, <strong>Junran Wang</strong>*, Rongzhe Wei, Pan Li</p>
+      <p class="publication-venue"><span class="venue-badge venue-badge--arxiv">arXiv preprint</span></p>
+      <div class="publication-links">
+        <a class="action-link" href="https://arxiv.org/abs/2609.34518v1">Paper</a>
+        <a class="action-link" href="https://everywheresafety.github.io/sead/">Project</a>
+        <a class="action-link" href="https://github.com/EverywhereSafety/SEAD">Code</a>
+      </div>
+    </div>
+  </div>
+</article>
+
+<article class="publication-card">
+  <div class="publication-content">
+    <figure class="publication-figure">
       <img src="static/assets/img/blog/acflow.jpg" alt="AcFlow research overview" loading="lazy" decoding="async" />
     </figure>
     <div class="publication-details">
