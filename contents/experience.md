@@ -1,3 +1,3 @@
-- **Infplane AI Ltd.** (Jun 2024 - Apr 2025)
-  - Developed automated hyperparameter optimization algorithms to reduce training costs for LLMs.
-  - Developed a non-supervision graph-based algorithm for root-cause analysis of a computation cluster.
+- **Infplane AI Ltd.** (Sept 2024 - May 2025) — Pre-Series A; approx. CNY 50M raised
+  - Set up and ran small-scale LLM pretraining experiments with Megatron-LM.
+  - Prepared pretraining corpora using OpenWebText, including text cleaning, language/length filtering, and LSH-based deduplication, followed by tokenization and conversion to indexed binary datasets.

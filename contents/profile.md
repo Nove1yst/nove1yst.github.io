@@ -11,6 +11,8 @@ Georgia Institute of Technology
 <div class="profile-links">
   <a class="action-link" href="mailto:nove1yst@gatech.edu"><span aria-hidden="true">✉</span> Email</a>
   <a class="action-link" href="https://github.com/Nove1yst"><span aria-hidden="true">⌘</span> GitHub</a>
+  <a class="action-link" href="https://scholar.google.com/citations?user=l_q7PVoAAAAJ"><span aria-hidden="true">↗</span> Google Scholar</a>
+  <a class="action-link" href="https://www.linkedin.com/in/junran-wang-583a89359/"><span aria-hidden="true">↗</span> LinkedIn</a>
   <a class="action-link" href="docs/jwang_cv.pdf"><span aria-hidden="true">↗</span> CV</a>
 </div>
 

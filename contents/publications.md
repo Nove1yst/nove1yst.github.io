@@ -5,7 +5,8 @@
     </figure>
     <div class="publication-details">
       <h3 class="publication-title">SEAD: A State-Based Perspective on Attack and Defense in Tool-Using Agents</h3>
-      <p class="publication-authors">Xinjie Shen*, <strong>Junran Wang</strong>*, Rongzhe Wei, Pan Li</p>
+      <!-- Keep SEAD author order aligned with Resume/citations.bib: Junran Wang, Xinjie Shen, Rongzhe Wei, Pan Li. -->
+      <p class="publication-authors"><strong>Junran Wang</strong>*, Xinjie Shen*, Rongzhe Wei, Pan Li</p>
       <p class="publication-venue"><span class="venue-badge venue-badge--arxiv">arXiv preprint</span></p>
       <div class="publication-links">
         <a class="action-link" href="https://arxiv.org/abs/2609.34518v1">Paper</a>

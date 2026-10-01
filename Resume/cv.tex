@@ -9,7 +9,7 @@
 %	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 %	copies of the Software, and to permit persons to whom the Software is
 %	furnished to do so, subject to the following conditions:
-%	
+%
 %	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 %	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 %	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -17,7 +17,7 @@
 %	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 %	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 %	THE SOFTWARE.
-%	
+%
 %
 %-----------------------------------------------------------------------------------------------------------------------------------------------%
 
@@ -48,7 +48,7 @@
 %	PACKAGES
 %----------------------------------------------------------------------------------------
 \usepackage{url}
-\usepackage{parskip} 	
+\usepackage{parskip}
 
 %other packages for formatting
 \RequirePackage{color}
@@ -63,7 +63,7 @@
 \usepackage{enumitem}
 
 % centered version of 'X' col. type
-\newcolumntype{C}{>{\centering\arraybackslash}X} 
+\newcolumntype{C}{>{\centering\arraybackslash}X}
 
 %to prevent spillover of tabular into next pages
 \usepackage{supertabular}
@@ -72,24 +72,48 @@
 \setlength{\fullcollw}{0.47\textwidth}
 
 %custom \section
-\usepackage{titlesec}				
+\usepackage{titlesec}
 \usepackage{multicol}
 \usepackage{multirow}
 
-%CV Sections inspired by: 
+%CV Sections inspired by:
 %http://stefano.italians.nl/archives/26
 \titleformat{\section}{\Large\scshape\raggedright}{}{0em}{}[\titlerule]
 \titlespacing{\section}{0pt}{6pt}{6pt}
 
 %for publications
-\usepackage[style=authoryear, sorting=none, maxbibnames=20, minbibnames=1, backend=biber]{biblatex}
+\usepackage[style=numeric, sorting=none, maxbibnames=20, minbibnames=1, backend=biber]{biblatex}
 
 %Setup hyperref package, and colours for links
 \usepackage[unicode, draft=false]{hyperref}
 \definecolor{linkcolour}{rgb}{0,0.2,0.6}
 \hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour}
 \addbibresource{citations.bib}
-\setlength\bibitemsep{0.3em}
+\newlength{\cventrysep}
+\setlength{\cventrysep}{8pt}
+\setlength\bibitemsep{\cventrysep}
+\DeclareNameAlias{default}{given-family}
+\renewcommand*{\mkbibnamegiven}[1]{\ifitemannotation{highlight}{\mkbibbold{#1}}{#1}}
+\renewcommand*{\mkbibnamefamily}[1]{%
+  \ifitemannotation{highlight}{\mkbibbold{#1}}{#1}%
+  \ifitemannotation{equal}{\textsuperscript{*}}{}}
+\DeclareFieldFormat{cvtitle}{\textbf{#1}}
+\DeclareFieldFormat{cvvenue}{\textbf{#1}}
+\DeclareFieldFormat{cvlink}{\href{#1}{[Paper]}}
+\newbibmacro*{cvpublication}{%
+  \printfield[cvtitle]{title}%
+  \setunit{\newline}\printnames{author}%
+  \setunit{\addperiod\space}%
+  \iffieldundef{booktitle}
+    {\iffieldundef{journaltitle}
+      {\printtext{\mkbibemph{arXiv preprint (\printfield{year})}}}
+      {\printfield[cvvenue]{journaltitle}}}
+    {\printfield[cvvenue]{booktitle}}%
+  \setunit{\addspace}\printfield[cvlink]{url}%
+  \finentry}
+\DeclareBibliographyDriver{misc}{\usebibmacro{cvpublication}}
+\DeclareBibliographyDriver{inproceedings}{\usebibmacro{cvpublication}}
+\DeclareBibliographyDriver{article}{\usebibmacro{cvpublication}}
 
 
 %for social icons
@@ -119,7 +143,7 @@
 %     }
 %     {
 %     \end{itemize}
-%     \end{minipage}    
+%     \end{minipage}
 %     }
 
 \newenvironment{jobshort}[4] % 接受4个参数：职位, 时间, 组织, 导师/负责人
@@ -132,18 +156,19 @@
     {
     }
 
-\newenvironment{joblong}[4] % 接受4个参数：职位, 时间, 组织, 导师/负责人
+\newenvironment{joblong}[4] % Title, dates, organization/role/venue, advisor
     {
     \begin{tabularx}{\linewidth}{@{}l X r@{}}
     \textbf{#1} & \hfill &  #2 \\
     \textit{#3} & \hfill & Advisor: #4 \\[3pt]
     \end{tabularx}
     \begin{minipage}[t]{\linewidth}
-    \begin{itemize}[nosep,after=\strut, leftmargin=1em, itemsep=2pt,label=--]
+    \begin{itemize}[nosep, leftmargin=1em, itemsep=3pt,label=--]
     }
     {
+    \unskip\nobreak\strut
     \end{itemize}
-    \end{minipage}    
+    \end{minipage}\par\vspace{\dimexpr\cventrysep-\parskip\relax}
     % \vspace{1pt}
     }
 
@@ -154,11 +179,12 @@
     \textit{#3} & \hfill & \\[3pt]
     \end{tabularx}
     \begin{minipage}[t]{\linewidth}
-    \begin{itemize}[nosep,after=\strut, leftmargin=1em, itemsep=2pt,label=--]
+    \begin{itemize}[nosep, leftmargin=1em, itemsep=3pt,label=--]
     }
     {
+    \unskip\nobreak\strut
     \end{itemize}
-    \end{minipage}    
+    \end{minipage}\par\vspace{\dimexpr\cventrysep-\parskip\relax}
     % \vspace{2pt}
     }
 
@@ -168,10 +194,14 @@
 %----------------------------------------------------------------------------------------
 %	BEGIN DOCUMENT
 %----------------------------------------------------------------------------------------
+% Strengthen only bold text while retaining Computer Modern body text.
+\usepackage{pdfrender}
+\DeclareTextFontCommand{\textbf}{\bfseries\pdfrender{TextRenderingMode=FillStroke,LineWidth=0.12pt}}
+
 \begin{document}
 
 % non-numbered pages
-\pagestyle{empty} 
+\pagestyle{empty}
 
 %----------------------------------------------------------------------------------------
 %	TITLE
@@ -185,10 +215,11 @@
 
 \begin{tabularx}{\linewidth}{@{} C @{}}
 \Huge{Junran Wang} \\[7.5pt]
-\href{https://github.com/Nove1yst}{\raisebox{-0.05\height}\faGithub\ Nove1yst} \ $|$ \ 
+\href{https://github.com/Nove1yst}{\raisebox{-0.05\height}\faGithub\ Nove1yst} \ $|$ \
 \href{https://www.linkedin.com/in/junran-wang-583a89359/}{\raisebox{-0.05\height}\faLinkedin\ LinkedIn} \ $|$ \
-\href{https://nove1yst.github.io}{\raisebox{-0.05\height}\faGlobe \ nove1yst.github.io} \ $|$ \ 
-\href{jwang3668@gatech.edu}{\raisebox{-0.05\height}\faEnvelope \ nove1yst@gatech.edu} \ $|$ \ 
+\href{https://scholar.google.com/citations?user=l_q7PVoAAAAJ}{\raisebox{-0.05\height}\faGraduationCap\ Google Scholar} \ $|$ \
+\href{https://nove1yst.github.io}{\raisebox{-0.05\height}\faGlobe \ nove1yst.github.io} \\[2pt]
+\href{mailto:nove1yst@gatech.edu}{\raisebox{-0.05\height}\faEnvelope \ nove1yst@gatech.edu} \ $|$ \
 \href{tel:6788625631}{\raisebox{-0.05\height}\faMobile \ (678)862-5631} \\
 \end{tabularx}
 
@@ -196,15 +227,15 @@
 %	EDUCATION
 %----------------------------------------------------------------------------------------
 % \section{Education}
-% \begin{tabularx}{\linewidth}{@{}l X@{}}	
+% \begin{tabularx}{\linewidth}{@{}l X@{}}
 % 2025 - present &  Master (ECE) at \textbf{Georgia Institute of Technology} \hfill \normalsize (GPA: 4.0/4.0) \\
 
-% 2021 - 2025 & Bachelor's Degree at \textbf{Tsinghua University} \hfill (GPA: 4.0/4.0) \\ 
+% 2021 - 2025 & Bachelor's Degree at \textbf{Tsinghua University} \hfill (GPA: 4.0/4.0) \\
 
 % 2024 & Visiting Scholar at \textbf{SUNY Buffalo} \hfill
 % \end{tabularx}
 \section{Education}
-\begin{tabularx}{\linewidth}{@{}l X r@{}}	
+\begin{tabularx}{\linewidth}{@{}l X r@{}}
 2025 - Present & \textbf{Georgia Institute of Technology} & Atlanta, GA \\
 & Master of Science in \textit{Electrical and Computer Engineering} & GPA: 4.0/4.0 \\
 % & \small \textit{Relevant Coursework: [Course 1, Course 2, Course 3]} & \\
@@ -218,29 +249,30 @@
 2024 & \textbf{University at Buffalo, the State University of New York} & Buffalo, NY \\
 & Visiting Scholar in \textit{Department of Computer Science and Engineering} & \\
 \end{tabularx}
-  
+
 %Projects
 \section{Research Experience}
-\begin{joblong}{\textsc{SEAD}: A State-Based Perspective on Attack and Defense in Tool-Using Agents}{Jul 2026 - Sept 2026}{Georgia Institute of Technology \ $|$ \ Co-first Author \ $|$ \ \href{https://everywheresafety.github.io/sead/}{\textnormal{\faGlobe\ \texttt{Website}}}}{Dr. Pan Li}
-\item Formulated attack and defense for tool-using agents as \textbf{partially observed state control}, grounding safety in persistent environment changes and harmful-state reachability.
-\item Developed \textsc{DART} and \textsc{SAGE} for adversarial evaluation and \textbf{state-aware pre-execution defense}, supported by replayable tool environments and task-specific executable checks.
-\item \textsc{SAGE} preserved \textbf{95.79\%} of benign trajectories and intercepted \textbf{92.73\%} of harmful paths in recorded evaluations; reduced executable attack success from \textbf{48.0\% to 4.0\%} in online evaluation.
+\setstretch{1.05}
+\begin{joblong}{\textsc{ImmersedPrivacy}: Evaluating VLMs' Privacy Awareness in the Physical World}{Jan 2026 - May 2026}{Georgia Institute of Technology \ $|$ \ First Author \ $|$ \ \textnormal{\textbf{NeurIPS 2026}} \ $|$ \ \href{https://immersed-privacy.github.io}{\textnormal{\faGlobe\ \texttt{Website}}}}{Dr. Pan Li}
+\item Built a \textbf{reusable data generation and evaluation pipeline} in Unity for agent privacy, producing \textbf{400+ interactive audio-visual scenarios across 40+ physical environments} with configurable layouts and social contexts.
+\item Established evaluation quality through \textbf{human-annotated baselines} and controlled scenario augmentation, separating perception failures from privacy reasoning for \textbf{attribution analysis}.
+\item Benchmarked \textbf{12 VLMs} and exposed a \textbf{gap between privacy knowledge and behavior}: even the best model jointly satisfied task and privacy requirements in only \textbf{51\%} of conflicting-command cases.
+\end{joblong}
+\begin{joblong}{{Beyond Steering Vector: Flow-based Activation Steering}}{Mar 2026 - May 2026}{Georgia Institute of Technology \ $|$ \ First Author \ $|$ \ \textnormal{\textbf{NeurIPS 2026}} \ $|$ \href{https://flas-ai.github.io}{\textnormal{\faGlobe\ \texttt{Website}}}}{Dr. Chao Zhang}
+\item Introduced \textsc{FLAS}, a \textbf{flow-based activation steering method} that learns concept-conditioned velocity fields to adapt interventions to each token's evolving activation state.
+\item Revealed \textbf{curved, multi-step, token-dependent steering} trajectories through activation-space analysis, providing empirical evidence that challenges the \textbf{linear representation hypothesis} in activation steering.
+\item Achieved \textbf{zero-shot generalization} to unseen concepts without per-concept tuning, becoming the first learned steering method to consistently outperform prompting on AxBench across Gemma-2-2B/9B.
+\end{joblong}
+\begin{joblong}{\textsc{SEAD}: A State-Based Perspective on Attack and Defense in Tool-Using Agents}{Jul 2026 - Sept 2026}{Georgia Institute of Technology \ $|$ \ First Author \ $|$ \ \href{https://everywheresafety.github.io/sead/}{\textnormal{\faGlobe\ \texttt{Website}}}}{Dr. Pan Li}
+\item Formulated agent attack and defense as a \textbf{POMDP} and implemented an \textbf{agent safety testing sandbox} with \textbf{resettable environments, trajectory replay, and executable checks} across filesystem, terminal, database, and web tasks.
+\item Developed \textsc{DART}, an \textbf{evolving attack agent} that refines strategies through execution feedback and tree search, using a \textbf{27B model} to attack commercial agents and achieving \textbf{73.3\% attack success} against GPT-5.6.
+\item Developed \textsc{SAGE}, a \textbf{defender agent}, through \textbf{agentic post-training}, which actively \textbf{investigates environment} for safety evidence and reduces attack success to \textbf{at most 4.0\%} under various adaptive attacks.
 \end{joblong}
 \begin{joblongnoadvisor}{\textsc{AcFlow}: Controlling T2I DiTs via Learned Conditional Activation Flow}{Jul 2026 - Sept 2026}{Georgia Institute of Technology \ $|$ \ First Author \ $|$ \ \href{https://github.com/Nove1yst/AcFlow}{\textnormal{\faGlobe\ \texttt{Website}}}}
-\item Introduced \textsc{AcFlow}, a learned concept-conditioned \textbf{velocity field} that steers image-token activations in frozen text-to-image diffusion transformers through \textbf{token-specific, activation-dependent updates}.
-\item Enabled \textbf{continuous} style control and concept suppression through adjustable flow horizons, with weights \textbf{shared across concepts} within each task family and \textbf{zero-shot generalization}.
-\item Achieved the \textbf{best style--content trade-off} among evaluated baselines.
+\item Developed \textsc{AcFlow} as a \textbf{scalable, text-conditioned, continuous-strength control module} for frozen image generators, enabling control toward a \textbf{general-purpose controller} for diffusion transformers.
+\item Scaled concept coverage without per-concept fitting: one controller covers \textbf{15,000+ styles} or \textbf{1,000+ concepts} and \textbf{generalizes} to unseen concepts.
+\item Validated the control interface on \textbf{FLUX and Z-Image}, achieving the \textbf{best intervention--preservation trade-off} among evaluated baselines.
 \end{joblongnoadvisor}
-\begin{joblong}{\textsc{ImmersedPrivacy}: Evaluating VLMs'Privacy Awareness in the Physical World}{Jan 2026 - May 2026}{Georgia Institute of Technology \ $|$ \ First Author \ $|$ \ \href{https://immersed-privacy.github.io}{\textnormal{\faGlobe\ \texttt{Website}}}}{Dr. Pan Li}
-\item Developed \textsc{ImmersedPrivacy}, a first-of-its-kind \textbf{interactive Visual+Audio benchmark} to evaluate VLMs' privacy awareness in dynamic physical environments.
-\item Engineered a three-tier hierarchical framework built on a customized Unity simulator featuring 53 complex scenarios and 500+ procedurally generated instances.
-\item Implemented an \textbf{interactive evaluation pipeline}, enabling agents to actively navigate environments and resolve task-privacy conflicts through multi-turn, closed-loop decision making.
-\end{joblong}
-\begin{joblong}{{Beyond Steering Vector: Flow-based Activation Steering}}{Mar 2026 - May 2026}{Georgia Institute of Technology \ $|$ \ Co-first Author \ $|$ \href{https://flas-ai.github.io}{\textnormal{\faGlobe\ \texttt{Website}}}}{Dr. Chao Zhang}
-\item Introduced \textsc{FLAS}, a concept-conditioned velocity field that steers frozen LLM activations through adaptive, multi-step, and position-sensitive flows using positive examples alone.
-\item Designed a lightweight FlowBlock architecture with cross-attention and Euler integration, enabling zero-shot control of unseen concepts and continuous steering-strength adjustment without per-concept tuning.
-\item Achieved held-out HMean scores of \textbf{1.015/1.113} on Gemma-2-2B/9B-IT, making \textsc{FLAS} the first learned steering method to consistently outperform in-context prompting on AxBench.
-\end{joblong}
 
 % \begin{joblong}{Accelerated Sequential Flow Matching: A Bayesian Filtering Perspective}{Oct 2025 - Jan 2026}{Georgia Institute of Technology}{Dr. Pan Li}
 % \item Introduced a novel Sequential Flow Matching framework that treats streaming inference as a recursive Bayesian belief update, enabling flow-based models to leverage historical predictions as a principled "warm start" instead of re-sampling from scratch.
@@ -259,19 +291,22 @@
 % % This CV can also be automatically complied and published using GitHub Actions. For details, \href{https://github.com/jitinnair1/autoCV}{click here}.
 
 %Experience
+\setstretch{0.9}
 \section{Work Experience}
 
 
-\begin{joblongnoadvisor}{Machine Learning Engineer Intern}{Sept 2024 - May 2025}{Infplane AI Ltd.}
-\item Developed automated hyperparameter optimization algorithms to reduce training costs for LLMs.
-\item Developed a non-supervision graph-based algorithm for root-cause analysis of a computation cluster.
+\begin{joblongnoadvisor}{Machine Learning Engineer Intern}{Sept 2024 - May 2025}{Infplane AI Ltd. \ $|$ \ Pre-Series A \ $|$ \ approx. CNY 50M raised}
+\item Set up and ran small-scale LLM \textbf{pretraining experiments} with \textbf{Megatron-LM}.
+\item Prepared pretraining corpora using OpenWebText, including \textbf{text cleaning, language/length filtering, and LSH-based deduplication}, followed by tokenization and conversion to indexed binary datasets.
 % \item Developed hardware and software of a desktop conversation robot with basic interactions ability
 \end{joblongnoadvisor}
 
 %----------------------------------------------------------------------------------------
 %	PUBLICATIONS
 %----------------------------------------------------------------------------------------
+\newpage
 \section{Publications}
+{\small\textit{* denotes equal contribution.}}
 \begin{refsection}[citations.bib]
 \nocite{*}
 \printbibliography[heading=none]
@@ -293,12 +328,12 @@
 
 
 \section{Honors \& Awards}
-\begin{tabularx}{\linewidth}{@{}l X@{}}	
-National Scholarship & Top 2\% university students in China \hfill 2024 \\
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+National Scholarship & Top 2\% university students in China \hfill 2024 \\[4pt]
 
-Overall Excellence Scholarship & Top 5\% in Tsinghua University \hfill 2023 \\ 
+Overall Excellence Scholarship & Top 5\% in Tsinghua University \hfill 2023 \\[4pt]
 
-Finalist in Interdisciplinary Contest in Modeling (ICM) & Top 2\% teams worldwide \hfill 2023 \\ 
+Finalist in Interdisciplinary Contest in Modeling (ICM) & Top 2\% teams worldwide \hfill 2023 \\[4pt]
 
 Overall Excellence Scholarship & Top 5\% in Tsinghua University \hfill 2022
 \end{tabularx}
@@ -308,12 +343,12 @@ Overall Excellence Scholarship & Top 5\% in Tsinghua University \hfill 2022
 %----------------------------------------------------------------------------------------
 \section{Skills}
 \begin{tabularx}{\linewidth}{@{}l X@{}}
-Programming Languages &  \normalsize{C, C++, Python, familiar with RUST}\\
-ML Frameworks \& Serving & \normalsize{PyTorch, CUDA, Hugging Face Transformers, vLLM, SGLang} \\
-AI Agent Infra & \normalsize{Post-training, MCP, MCP, Trajectory Analysis} \\
-Software Engineering & \normalsize{Docker, Docker Compose, Slurm, Git} \\
-Rendering & \normalsize{Unity Engine, Blender, Meshlab} \\
-Languages & Mandarin (native), English (TOEFL 115), Italian (entry-level) \\
+Programming Languages &  \normalsize{C, C++, Python, familiar with RUST}\\[4pt]
+ML Frameworks \& Serving & \normalsize{PyTorch, CUDA, Hugging Face Transformers, vLLM, SGLang} \\[4pt]
+AI Agent Infra & \normalsize{Post-training, MCP, MCP, Trajectory Analysis} \\[4pt]
+Software Engineering & \normalsize{Docker, Docker Compose, Slurm, Git} \\[4pt]
+Rendering & \normalsize{Unity Engine, Blender, Meshlab} \\[4pt]
+Languages & Mandarin (native), English (TOEFL 115), Italian (entry-level) \\[4pt]
 \end{tabularx}
 
 \vfill
