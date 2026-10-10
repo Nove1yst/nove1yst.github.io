@@ -43,7 +43,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 wrapper.append(table);
             });
             document.getElementById('maillist-post-slug').value = slug;
-            maillist.hidden = false;
+            maillist.hidden = meta.maillist === false;
             document.getElementById('maillist-thanks').hidden = params.get('subscribed') !== '1';
             if (window.MathJax?.startup?.promise) {
                 await MathJax.startup.promise;

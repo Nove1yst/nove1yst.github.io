@@ -1,3 +1,9 @@
+- slug: loop_contrast
+  title: "Loop Contrast Is Autoguidance, Not a Correction of Over-Confidence"
+  date: 2026-10-10
+  maillist: false
+  summary: "Contrasting a looped LM's last loop with its first makes it a worse model of text but a better reasoner. The promoted tokens are ones later loops brought into play, which fits autoguidance rather than an early-loop over-confidence account."
+
 - slug: mllm_privacy
   title: "ImmersedPrivacy: How Far Are We from Privacy-Aware Trustworthy VLMs in the Physical World?"
   date: 2026-04-24
