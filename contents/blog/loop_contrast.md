@@ -1,8 +1,8 @@
-*Junran Wang · Notes from a probe of loop contrast (LoopCD) on Ouro-1.4B-Thinking.*
+*Junran Wang · Notes from a probe of loop contrast (LoopCD) on Ouro-1.4B-Thinking and 2.6B-Thinking.*
 
 Loop contrast makes a looped language model worse at predicting human-written text, yet improves its answers to difficult math problems. At uncertain tokens, it also ranks the model's own correct reasoning traces above wrong ones, while temperature and a stronger weak copy do not. This is the signature of autoguidance: guide a model away from a weaker version of itself.
 
-The token dynamics reject the rival account that LoopCD corrects an over-confident early loop. The contrast promotes candidates that later loops brought into play from near-zero probability. The overruled token also gains probability with depth. LoopCD amplifies alternatives discovered by extra computation rather than finishing an early correction.
+The token dynamics reject the rival account that LoopCD corrects an over-confident early loop. The contrast promotes candidates that later loops brought into play from near-zero probability. The overruled token also gains probability with depth. LoopCD amplifies alternatives discovered by extra computation rather than finishing an early correction. Nor is it a shortcut to more computation: running the model for extra loops does not reach the same choices.
 
 ## A weak copy inside the model
 
@@ -12,7 +12,7 @@ $$z_{\mathrm{LoopCD}} = z_4 + w(z_4-z_1).$$
 
 The first loop is the weak copy. The contrast rewards tokens whose relative support increased through the loops, which can improve generation without improving the model of text.
 
-On AIME24, Ouro-1.4B-Thinking uses a 32k-token budget, temperature 1.0 and top-p 0.7. With $w=0.5$, accuracy rises from 53.8% to 58.6%. Across three seeds, the paired gain is +4.9 points, with a 95% bootstrap interval of [+1.7, +8.1].
+On AIME24, Ouro-1.4B-Thinking uses a 32k-token budget, temperature 1.0 and top-p 0.7. With $w=0.5$, accuracy rises from 53.8% to 58.6%. Across three seeds, the paired gain is +4.9 points, with a 95% bootstrap interval of [+1.7, +8.1]. The gain is larger on Ouro-2.6B-Thinking under the same settings: 65.4% to 78.3%, +12.9 points [+6.2, +20.0] (one seed × 8 samples). There, about 5% of plain samples hit the length limit and none of the LoopCD samples do, so helping traces finish accounts for at most 5 of those points.
 
 ## Worse on reference text, better at ranking its own traces
 
@@ -42,9 +42,17 @@ The promoted token's mean probability rises from 0.048 to 0.263. Most of that em
 
 The overruled token also rises, from 0.340 to 0.426. It peaks at loop 2 and then eases, but later computation has not discarded it. LoopCD promotes the alternative because its relative growth was larger, not because the original choice collapsed.
 
-The promoted token is usually a problem-specific word replacing generic scaffolding. The contrast moves away from tokens such as `\n`, `the`, `So`, `problem` and `wait`; examples include `Find → Check`, `But → We` and `the → sides`. “Created” means brought from near-zero probability into contention, not a token literally absent from the vocabulary.
+The promoted token tends to be less generic than the one it replaces. The contrast moves away from tokens such as `\n`, `the`, `So`, `problem` and `wait`; examples include `Find → Check`, `But → We` and `the → sides`. This is a tendency, not a rule: 83% of overruled tokens are among the 300 most frequent tokens in the traces, against 60% of promoted ones (77% and 73% for random-direction switches). “Created” means brought from near-zero probability into contention, not a token literally absent from the vocabulary.
 
-This differs from Yu, So & Park's account of correcting early overconfidence. At these switches, the overruled token is not an early belief that subsequent loops steadily undo. The promoted candidate is the distinctive part of the depth change. Promoting depth-emerging tokens is also familiar from [DoLa (2309.03883)](https://arxiv.org/abs/2309.03883); here we measure both candidates across the loops where LoopCD actually switches.
+This differs from Yu, So & Park's account of correcting early overconfidence. At these switches, the overruled token is not an early belief that subsequent loops steadily undo. The promoted candidate is the distinctive part of the depth change. Promoting depth-emerging tokens is also familiar from [DoLa (2309.03883)](https://arxiv.org/abs/2309.03883), which finds that function words settle in early layers and content tokens late; here we measure both candidates across the loops where LoopCD actually switches. The positions themselves are the kind that [Wang et al. (2506.01939)](https://arxiv.org/abs/2506.01939) call forking tokens: the highest-entropy tokens in reasoning traces, often connectives such as *wait*, *however* or *thus*.
+
+## More loops do not make the same choice
+
+If the contrast only extrapolated where computation was heading, running the model for more loops should reach the same choices. Ouro can be unrolled past its four trained loops, with loops 1–4 unchanged. We ran six loops over the first 6k tokens of 30 traces and followed the 6,587 positions where LoopCD switches the top choice.
+
+The promoted token's probability stops growing at loop 4: 0.264, 0.262 and 0.256 at loops 4, 5 and 6. The overruled token holds at about 0.43. The median log ratio of promoted to overruled narrows from −2.44 at loop 1 to −0.39 at loop 4, then widens again to −0.50 at loop 6. At loop 6 the promoted token is the top choice at 17% of these positions, the same rate as for switches made by a random direction (16%).
+
+The relative growth that LoopCD extrapolates is mostly made between loops 1 and 2 and has run out by loop 4; further computation does not continue it. The contrast is therefore not a shortcut to more loops: it applies a preference that the model's own computation does not reach. Loops 5 and 6 lie outside training, so this is a statement about this model's extra loops, not about computation in general.
 
 ## The contrast direction and the quality gap matter
 
@@ -66,7 +74,7 @@ The grey rows replace one part of LoopCD's formula $h_4 + w(h_4-h_1)$ and keep t
 
 Lowering temperature to 0.8 falls 4.4 points below LoopCD. A random direction of the same length falls 6.9 points below it, and $h_4-h_1$ with its dimensions shifted falls 11.5 points below it. The random perturbation also reduces truncation without improving accuracy, separating the gain from simply helping traces finish.
 
-Penalising the 300 most common tokens at uncertain positions is a more targeted substitute. Its switch rate is matched to LoopCD's, but it falls 6.5 points below LoopCD. Moving away from common scaffolding is insufficient: which alternative receives the probability matters.
+Penalising the 300 most common tokens at uncertain positions is a more targeted substitute. Its switch rate is matched to LoopCD's, but it falls 6.5 points below LoopCD. Moving away from common scaffolding is insufficient: which alternative receives the probability matters. This fits the mixed record of rules that act on generic reasoning tokens: penalising thought-switch tokens helps in [Wang et al. (2501.18585)](https://arxiv.org/abs/2501.18585), removing "wait" is neutral or harmful depending on the model in [NoWait (2506.08343)](https://arxiv.org/abs/2506.08343), and inserting "Wait" helps in [s1 (2501.19393)](https://arxiv.org/abs/2501.19393).
 
 A stronger weak copy provides another test. At the same weight, contrasting against loop 3 makes a much smaller change than contrasting against loop 1, and accuracy barely moves (+0.6 points over the plain model, not shown). We therefore raise the loop-3 contrast weight to 2. This gives a KL shift of 0.038, compared with 0.033 for the usual first-loop contrast. Even with comparable distribution movement, accuracy falls 10.7 points below LoopCD, with interval [−17.8, −3.8].
 
@@ -80,7 +88,7 @@ Applying LoopCD only in the opening roughly 2k tokens gives +4.6 points, with in
 
 The effect can therefore be set early in a long reasoning trace. This echoes the guidance-interval result of [Kynkäänniemi et al. (2024; 2404.07724)](https://arxiv.org/abs/2404.07724) in image diffusion and the front-loaded CFG gains reported by [Zhou et al. (2608.08082)](https://arxiv.org/abs/2608.08082) for masked diffusion language models.
 
-Restricting LoopCD to uncertain tokens gives +6.7 points. Restricting its reordering to word tokens gives +7.1 points. Restricting it to number, operator and LaTeX tokens gives +2.1 points, which is not significant. The vocabulary interventions preserve each class's total probability mass, isolating choices within a class.
+Restricting LoopCD to uncertain tokens gives +6.7 points on the 1.4B model. On the 2.6B model the same restriction gives only +4.6 points [−1.7, +11.2], 8.3 points below full LoopCD, so in the larger model the contrast also matters at confident positions. Restricting LoopCD's reordering to word tokens gives +7.1 points. Restricting it to number, operator and LaTeX tokens gives +2.1 points, which is not significant. The vocabulary interventions preserve each class's total probability mass, isolating choices within a class.
 
 Uncertainty and word-level localization are not new discoveries here. Yu et al. already localize gains to difficult tokens and find weaker numeric-only gains. [Minimal Test-Time Intervention (2510.13940)](https://arxiv.org/abs/2510.13940) applies CFG selectively at high-entropy tokens. Our evidence connects this localization to worse reference likelihood, emergent candidates and matched controls in long autoregressive reasoning.
 
@@ -92,7 +100,7 @@ The clearest trace-ranking result uses $w=1$, while the generation result uses $
 
 Worse reference likelihood is not universal. [APD (2411.01610)](https://arxiv.org/abs/2411.01610) reports improved answer-token perplexity on Pythia QA using candidate filtering, a plausibility filter and task-tuned temperature. We evaluate full reference text at fixed contrast weights without that filter.
 
-The central generation claim remains limited to one model size and one benchmark. The remaining gap is causal: identifying which changed choices carry the improvement to the final answer.
+The generation gain holds at two model sizes, but on one benchmark, and the 2.6B run has a single seed; the mechanistic measurements were made on the 1.4B model only. The remaining gap is causal: identifying which changed choices carry the improvement to the final answer.
 
 ## Why looped models are a useful testbed
 
